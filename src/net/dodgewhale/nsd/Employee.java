@@ -1,11 +1,19 @@
 package net.dodgewhale.nsd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
 
 	private String name;
 	private int id;
 	private double salary;
+
 	private int managerId;
+	private int managers = 0;
+
+	private double teamSalary = 0.0;
+	private List<Integer> team = new ArrayList<>();
 
 	public Employee(String name, int id, double salary) {
 		this(name, id, salary, 0);
@@ -36,6 +44,40 @@ public class Employee {
 
 	public boolean hasManager() {
 		return this.getManager() != 0;
+	}
+
+	public int getManagers() {
+		return this.managers;
+	}
+
+	public int addManager() {
+		this.managers++;
+		return this.managers;
+	}
+
+	public void addTeamSalary(double salary) {
+		this.teamSalary += salary;
+	}
+
+	public double getTeamSalary() {
+		return this.teamSalary;
+	}
+
+	public List<Integer> getTeam() {
+		return this.team;
+	}
+
+	public void addTeamMember(Employee employee) {
+		this.getTeam().add(employee.getID());
+	}
+
+	public boolean hasTeam() {
+		return !this.getTeam().isEmpty();
+	}
+
+	@Override
+	public String toString() {
+		return this.getName() + " (#" + this.getID() + ")";
 	}
 
 	public static Employee load(String[] rawData) {
