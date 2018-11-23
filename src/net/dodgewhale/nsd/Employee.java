@@ -12,13 +12,14 @@ public class Employee {
 	private int managerId;
 	private int managers = 0;
 
-	private double teamSalary = 0.0;
 	private List<Integer> team = new ArrayList<>();
 
+	// Constructor for line managers
 	public Employee(String name, int id, double salary) {
 		this(name, id, salary, 0);
 	}
 
+	// Constructor
 	public Employee(String name, int id, double salary, int managerId) {
 		this.name = name;
 		this.id = id;
@@ -55,14 +56,6 @@ public class Employee {
 		return this.managers;
 	}
 
-	public void addTeamSalary(double salary) {
-		this.teamSalary += salary;
-	}
-
-	public double getTeamSalary() {
-		return this.teamSalary;
-	}
-
 	public List<Integer> getTeam() {
 		return this.team;
 	}
@@ -80,6 +73,11 @@ public class Employee {
 		return this.getName() + " (#" + this.getID() + ")";
 	}
 
+	/**
+	 * Returns a new Employee object by converting a line provided by the CSV file
+	 * @param rawData Data in each column
+	 * @return New Employee object
+	 */
 	public static Employee load(String[] rawData) {
 		String name = rawData[0];
 
